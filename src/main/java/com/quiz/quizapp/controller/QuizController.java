@@ -17,12 +17,14 @@ public class QuizController {
 
     @Autowired
     QuizService quizService;
+    @CrossOrigin
     @PostMapping("create")
     public ResponseEntity <String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
 
         return quizService.createQuiz(category, numQ, title);
     }
 
+    @CrossOrigin
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>>  getQuizQuestions(@PathVariable Integer id){
 
@@ -30,6 +32,7 @@ public class QuizController {
 
     }
 
+    @CrossOrigin
     @PostMapping("submit/{id}")
     public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> responses){
         return quizService.calculateResult(id, responses);
